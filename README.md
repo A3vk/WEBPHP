@@ -18,7 +18,7 @@ Bij fouten die normaal gebruik belemmeren wordt het product afgekeurd.
 De app moet draaien op je eigen webserver (lokaal of ergens anders) onder een zelfverzonnen url (apache vhost configuratie etc.) met error reporting E_ALL (moet je kunnen aantonen) zodat we de errors kunnen zien.
 Je moet tijdens het assessment bruikbare en normale data hebben in je applicatie zodat de gevraagde functionaliteit uitgevoerd kunnen worden. Geen ‘blabla’ of ‘hatsieflats’ data.
 Het product bevat, al dan niet volledig, de functionaliteit zoals beschreven. Er is dus altijd een admin omgeving, dashboard en deadline manager.
-Je maakt gebruik van PSR1,PSR2 & PSR4 standaarden zodanig dat de code voldoet aan de voorgestelde afspraken van https://www.php-fig.org
+Je maakt gebruik van [PSR1](https://www.php-fig.org/psr/psr-1/),[PSR2](https://www.php-fig.org/psr/psr-3/) & [PSR4](https://www.php-fig.org/psr/psr-4/) standaarden zodanig dat de code voldoet aan de voorgestelde afspraken van https://www.php-fig.org
 
 ### Waarschuwingen:
 
