@@ -16,13 +16,13 @@ class CreateTagTest extends Migration
         Schema::create('tag_test', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tag_id');
-            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('test_id');
             $table->timestamps();
 
-            $table->unique(['tag_id', 'type_id']);
+            $table->unique(['tag_id', 'test_id']);
             
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
+            $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
         });
     }
 

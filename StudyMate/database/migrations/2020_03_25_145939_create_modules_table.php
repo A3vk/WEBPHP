@@ -19,11 +19,8 @@ class CreateModulesTable extends Migration
             $table->unsignedInteger('period');
             $table->unsignedInteger('block');
             $table->unsignedInteger('total_credits');
-            $table->unsignedInteger('obtainarted_credits');   
-            $table->unsignedBigInteger('test_id'); 
+            $table->unsignedInteger('obtained_credits');   
             $table->timestamps();
-
-            $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
         });
     }
 

@@ -15,6 +15,6 @@ class Module extends Model
 
     public function tests() 
     {
-        return $this->hasOne(Test::class);
+        return $this->hasMany(Test::class);
     }
 }
