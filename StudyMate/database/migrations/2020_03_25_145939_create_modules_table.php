@@ -22,6 +22,8 @@ class CreateModulesTable extends Migration
             $table->unsignedInteger('obtainarted_credits');   
             $table->unsignedBigInteger('test_id'); 
             $table->timestamps();
+
+            $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
         });
     }
 
