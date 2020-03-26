@@ -6,14 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'period',
+        'block',
+        'total_credits',
+        'obtained_credits'
+    ];
 
     public function teachers()
     {
         return $this->belongsToMany(Teacher::class)->withPivot('is_coordinator', 'is_my_teacher');
     }
 
-    public function tests() 
+    public function tests()
     {
         return $this->hasMany(Test::class);
     }

@@ -1,8 +1,17 @@
 @extends('layouts.admin')
 
 @section('crud')
-    <a class="btn btn-success add-item" href="modules/create"><i class="fas fa-plus"></i>Toevoegen</a>
-
+    <div>
+        @if(session()->get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        <a class="btn btn-success mb-3 add-item float-right" href="{{ route('modules.create') }}"><i class="fas fa-plus"></i>Toevoegen</a>
+    </div>
     <div class="table-responsive">
         <table class="table table-hover table-fixed">
             <thead class="bg-success">
@@ -17,48 +26,24 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>WEBJS</td>
-                <td>3</td>
-                <td>7</td>
-                <td>4</td>
-                <td>0</td>
-                <td class="d-flex">
-                    <a class="btn btn-warning" href="modules/1/edit"><i class="fas fa-pen"></i></a>
-                    <form action="modules/1" method="DELETE">
-                        <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>WEBJS</td>
-                <td>3</td>
-                <td>7</td>
-                <td>4</td>
-                <td>0</td>
-                <td class="d-flex">
-                    <a class="btn btn-warning" href="modules/1/edit"><i class="fas fa-pen"></i></a>
-                    <form action="modules/1" method="DELETE">
-                        <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>WEBJS</td>
-                <td>3</td>
-                <td>7</td>
-                <td>4</td>
-                <td>0</td>
-                <td class="d-flex">
-                    <a class="btn btn-warning" href="modules/1/edit"><i class="fas fa-pen"></i></a>
-                    <form action="modules/1" method="DELETE">
-                        <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
+            @foreach($modules as $module)
+                <tr>
+                    <th scope="row">{{ $module->id }}</th>
+                    <td>{{ $module->name }}</td>
+                    <td>{{ $module->period }}</td>
+                    <td>{{ $module->block }}</td>
+                    <td>{{ $module->obtainded_credits }}</td>
+                    <td>{{ $module->total_credits }}</td>
+                    <td class="d-flex">
+                        <a class="btn btn-warning" href="{{ route('modules.edit', $module->id) }}"><i class="fas fa-pen"></i></a>
+                        <form action="{{ route('modules.destroy', $module->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

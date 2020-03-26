@@ -7,22 +7,29 @@ window.onload = () => {
         let addSelect = container.querySelector('.add select');
         let tableBody = container.querySelector('.table tbody');
 
-        let counter = deleteButtons.length + 1;
-
         deleteButtons.forEach((button) => {
             addDeleteCommand(button);
         });
 
         addButton.onclick = () => {
+            let selectedOption = addSelect.options[addSelect.selectedIndex];
+            let teacherId = addSelect.value;
+            let teacherName = selectedOption.text;
+
             let row = document.createElement('tr');
 
             let name = document.createElement('td');
-            name.innerText = 'Stijn Smulders';
+            name.innerText = teacherName;
+            let hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = 'teachers[]';
+            hidden.value = teacherId;
+            name.appendChild(hidden);
+
             row.appendChild(name);
 
-            row.appendChild(addRadio('coordinator', counter));
-            row.appendChild(addRadio('teacher', counter));
-            counter++;
+            row.appendChild(addRadio('coordinator', teacherId));
+            row.appendChild(addRadio('teacher', teacherId));
 
             let action = document.createElement('td');
             let deleteButton = document.createElement('button');
@@ -33,26 +40,9 @@ window.onload = () => {
             action.appendChild(deleteButton);
             row.appendChild(action);
             tableBody.appendChild(row);
-        };
 
-        // <tr>
-        // <td>Stijn Smulders</td>
-        // <td>
-        // <div class="custom-control custom-radio">
-        //     <input type="radio" class="custom-control-input" id="coordinator1" name="coordinator">
-        //     <label class="custom-control-label ml-4" for="coordinator1"></label>
-        //     </div>
-        //     </td>
-        //     <td>
-        //     <div class="custom-control custom-radio">
-        //     <input type="radio" class="custom-control-input" id="teacher1" name="teacher">
-        //     <label class="custom-control-label ml-4" for="teacher1"></label>
-        //     </div>
-        //     </td>
-        //     <td>
-        //     <button class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
-        // </td>
-        // </tr>
+            addSelect.removeChild(selectedOption);
+        };
     }
 };
 
@@ -66,6 +56,7 @@ function addRadio(type, id) {
     radio.type = 'radio';
     radio.id = type + id.toString();
     radio.name = type;
+    radio.value = id;
     div.appendChild(radio);
 
     let label = document.createElement('label');
@@ -78,11 +69,26 @@ function addRadio(type, id) {
 }
 
 function addDeleteCommand(button) {
+    let id, name;
     button.onclick = (e) => {
         if(e.path[1].tagName === 'svg') {
+            let td = e.path[4].firstChild;
+            id = td.childNodes[1].value;
+            name = td.childNodes[0].wholeText;
             e.path[5].removeChild(e.path[4]);
         } else {
+            let td = e.path[2];
+            id = td[1].value;
+            name = td[0].wholeText;
             e.path[3].removeChild(e.path[2]);
         }
+
+        let container = document.querySelector('.flexible-input');
+        let addSelect = container.querySelector('.add select');
+
+        let option = document.createElement('option');
+        option.innerText = name;
+        option.value = id;
+        addSelect.appendChild(option);
     }
 }
