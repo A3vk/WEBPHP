@@ -14,7 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin/teachers/index');
     }
 
     /**
@@ -24,7 +24,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/teachers/create');
     }
 
     /**
@@ -35,7 +35,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->get('firstName'));
     }
 
     /**
@@ -57,7 +57,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('admin/teachers/edit');
     }
 
     /**
@@ -80,6 +80,6 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        dd($teacher);
     }
 }

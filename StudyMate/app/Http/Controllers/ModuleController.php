@@ -14,7 +14,7 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin/modules/index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/modules/create');
     }
 
     /**
@@ -57,7 +57,7 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        //
+        return view('admin/modules/edit');
     }
 
     /**
@@ -80,6 +80,6 @@ class ModuleController extends Controller
      */
     public function destroy(Module $module)
     {
-        //
+        dd($module);
     }
 }
