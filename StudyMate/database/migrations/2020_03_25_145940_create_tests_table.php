@@ -16,14 +16,16 @@ class CreateTestsTable extends Migration
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('module_id');
             $table->string('name');
-            $table->binary('file');
-            $table->unsignedInteger('grade');
+            $table->binary('file')->nullable();
+            $table->string('grade')->nullable();
             $table->dateTime('date');
             $table->boolean('is_complete');
             $table->timestamps();
 
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
         });
     }
 
