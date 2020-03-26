@@ -51,12 +51,13 @@ class ModuleController extends Controller
             'period' => $request->get('period'),
             'block' => $request->get('block'),
             'total_credits' => $request->get('total_credits'),
-            'obtained_credits' => $request->get('obtained_credits')
+            'obtained_credits' => $request->get('obtained_credits'),
+            'created_at' => now()
         ]);
         $module->save();
 
         foreach ($request->get('teachers') as $teacher) {
-            $module->teachers()->attach($teacher, ['is_coordinator' => $teacher = $request->get('coordinator'), 'is_my_teacher' => $teacher = $request->get('teacher')]);
+            $module->teachers()->attach($teacher, ['is_coordinator' => ($teacher == $request->get('coordinator')), 'is_my_teacher' => ($teacher == $request->get('teacher')), 'created_at' => now()]);
         }
         $module->save();
 
@@ -82,7 +83,8 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        return view('admin/modules/edit', compact('module'));
+        $teachers = Teacher::all()->diff(Teacher::whereIn('id', array_column($module->teachers->toArray(), 'id'))->get());
+        return view('admin/modules/edit', compact('module', 'teachers'));
     }
 
     /**
@@ -90,11 +92,34 @@ class ModuleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Module  $module
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Module $module)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'period'=>'required',
+            'block'=>'required',
+            'total_credits'=>'required',
+            'obtained_credits'=>'required'
+        ]);
+
+        $module->name = $request->get('name');
+        $module->period = $request->get('period');
+        $module->block = $request->get('block');
+        $module->total_credits = $request->get('total_credits');
+        $module->obtained_credits = $request->get('obtained_credits');
+        $module->updated_at = now();
+        $module->save();
+
+        $data = array();
+        foreach ($request->get('teachers') as $teacher) {
+            $data[$teacher] = ['is_coordinator' => ($teacher == $request->get('coordinator')), 'is_my_teacher' => ($teacher == $request->get('teacher'))];
+        }
+
+        $module->teachers()->sync($data);
+
+        return redirect('/admin/modules')->with('success', 'Vak geupdate!');
     }
 
     /**

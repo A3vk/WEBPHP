@@ -43,7 +43,8 @@ class TeacherController extends Controller
 
         $teacher = new Teacher([
             'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name')
+            'last_name' => $request->get('last_name'),
+            'created_at' => now()
         ]);
 
         $teacher->save();
@@ -88,6 +89,7 @@ class TeacherController extends Controller
 
         $teacher->first_name =  $request->get('first_name');
         $teacher->last_name = $request->get('last_name');
+        $teacher->updated_at = now();
         $teacher->save();
 
         return redirect('/admin/teachers')->with('success', 'Docent geupdate!');

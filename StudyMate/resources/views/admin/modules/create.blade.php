@@ -36,7 +36,7 @@
                     <input type="number" class="form-control" name="obtained_credits" min="0" value="0">
                 </div>
             </div>
-            <div class="flexible-input">
+            <div class="teacher-input">
                 <label>Docenten</label>
                 <table class="table">
                     <thead>

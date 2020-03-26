@@ -2,29 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Module;
+use App\Tag;
 use App\Test;
+use App\Type;
 use Illuminate\Http\Request;
+use function GuzzleHttp\Promise\all;
 
 class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('admin/tests/index');
+        $tests = Test::all();
+        return view('admin/tests/index', compact('tests'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        return view('admin/tests/create');
+        $types = Type::all();
+        $modules = Module::all();
+        $tags = Tag::all();
+        return view('admin/tests/create', compact('types', 'modules', 'tags'));
     }
 
     /**
@@ -35,7 +43,25 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'completed'=>'required'
+        ]);
+
+        $test = new Test([
+            'type_id' => $request->get('type'),
+            'module_id' => $request->get('module'),
+            'name' => $request->get('name'),
+            'grade' => $request->get('grade'),
+            'date' => $request->get('date'),
+            'is_complete' => ($request->get('completed') == 'on' ? true : false),
+            'created_at' => now()
+        ]);
+        $test->save();
+
+        $test->tags()->sync($request->get('tags'));
+
+        return redirect('/admin/tests')->with('success', 'Toets opgeslagen!');
     }
 
     /**

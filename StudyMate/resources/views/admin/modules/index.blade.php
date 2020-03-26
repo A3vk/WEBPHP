@@ -32,7 +32,7 @@
                     <td>{{ $module->name }}</td>
                     <td>{{ $module->period }}</td>
                     <td>{{ $module->block }}</td>
-                    <td>{{ $module->obtainded_credits }}</td>
+                    <td>{{ $module->obtained_credits }}</td>
                     <td>{{ $module->total_credits }}</td>
                     <td class="d-flex">
                         <a class="btn btn-warning" href="{{ route('modules.edit', $module->id) }}"><i class="fas fa-pen"></i></a>

@@ -1,7 +1,17 @@
 @extends('layouts.admin')
 
 @section('crud')
-    <a class="btn btn-success add-item" href="tests/create"><i class="fas fa-plus"></i>Toevoegen</a>
+    <div>
+        @if(session()->get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        <a class="btn btn-success mb-3 add-item float-right" href="{{ route('tests.create') }}"><i class="fas fa-plus"></i>Toevoegen</a>
+    </div>
     <div class="table-responsive">
         <table class="table table-hover table-fixed">
             <thead class="bg-success">
@@ -17,51 +27,24 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>WEBJS</td>
-                <td>Invy</td>
-                <td>assessment</td>
-                <td>26/03/2020</td>
-                <td>6,9</td>
-                <td>Ja</td>
-                <td class="d-flex">
-                    <a class="btn btn-warning" href="tests/1/edit"><i class="fas fa-pen"></i></a>
-                    <form action="tests/1" method="DELETE">
-                        <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>WEBJS</td>
-                <td>Invy</td>
-                <td>assessment</td>
-                <td>26/03/2020</td>
-                <td>6,9</td>
-                <td>Ja</td>
-                <td class="d-flex">
-                    <a class="btn btn-warning" href="tests/1/edit"><i class="fas fa-pen"></i></a>
-                    <form action="tests/1" method="DELETE">
-                        <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>WEBJS</td>
-                <td>Invy</td>
-                <td>assessment</td>
-                <td>26/03/2020</td>
-                <td>6,9</td>
-                <td>Ja</td>
-                <td class="d-flex">
-                    <a class="btn btn-warning" href="tests/1/edit"><i class="fas fa-pen"></i></a>
-                    <form action="tests/1" method="DELETE">
-                        <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
+            @foreach($tests as $test)
+                <tr>
+                    <th scope="row">{{ $test->id }}</th>
+                    <td>{{ $test->module->name }}</td>
+                    <td>{{ $test->name }}</td>
+                    <td>{{ $test->type->name }}</td>
+                    <td>{{ $test->date }}</td>
+                    <td>{{ $test->grade }}</td>
+                    <td>{{ $test->is_complete }}</td>
+                    <td class="d-flex">
+                        <a class="btn btn-warning" href="{{ route('tests.edit', $test->id) }}"><i class="fas fa-pen"></i></a>
+                        <form action="{{ route('tests.destroy', $test->id) }}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
