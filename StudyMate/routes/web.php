@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('admin/teachers', 'TeacherController');
+Route::resource('admin/modules', 'ModuleController');
+Route::resource('admin/tests', 'TestController');
+
