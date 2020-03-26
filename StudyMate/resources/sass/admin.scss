@@ -1,6 +1,5 @@
 .add-item {
-    float: right;
-    margin-bottom: 20px;
+    right: 0;
 }
 
 .table-fixed {
@@ -23,7 +22,7 @@
 
     tbody {
         overflow-y: scroll;
-        max-height: 750px;
+        max-height: 695px;
 
         tr {
             width: 100%;
