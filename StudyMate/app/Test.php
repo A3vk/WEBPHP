@@ -3,10 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Encryptable;
+
 
 class Test extends Model
 {
-    //
+    use Encryptable;
+
+    protected $encryptable = [
+        'name',
+        'file',
+        'grade',
+        'date',
+
+    ];
+
     public function types()
     {
         return $this->belongsTo(Type::class);

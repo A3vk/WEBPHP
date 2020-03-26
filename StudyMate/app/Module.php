@@ -3,10 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Encryptable;
 
 class Module extends Model
 {
+    use Encryptable;
+
     protected $fillable = [
+        'name',
+        'period',
+        'block',
+        'total_credits',
+        'obtained_credits'
+    ];
+
+    protected $encryptable = [
         'name',
         'period',
         'block',
