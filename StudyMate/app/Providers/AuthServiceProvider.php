@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        //gate for the admin enviorment
         Gate::define('admin', function ($user) 
         {
             if ( $user->role == 'admin') {
@@ -33,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
+        //gate for the deadline manager
         Gate::define('deadline', function ($user) 
         {
             if ( $user->role == 'deadline') {
