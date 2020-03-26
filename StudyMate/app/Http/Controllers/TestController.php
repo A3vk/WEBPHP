@@ -14,7 +14,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin/tests/index');
     }
 
     /**
@@ -24,7 +24,7 @@ class TestController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/tests/create');
     }
 
     /**
@@ -57,7 +57,7 @@ class TestController extends Controller
      */
     public function edit(Test $test)
     {
-        //
+        return view('admin/tests/edit');
     }
 
     /**
@@ -80,6 +80,6 @@ class TestController extends Controller
      */
     public function destroy(Test $test)
     {
-        //
+        dd($test);
     }
 }
