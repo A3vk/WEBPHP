@@ -31,16 +31,27 @@
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('/*')) ? 'active' : '' }}" href="/">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Deadline Manager</a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('admin*')) ? 'active' : '' }}">
-                        <a class="nav-link" href="/admin/teachers">Admin</a>
-                    </li>
+                    @if(Gate::allows('deadline', Auth::user()))
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Deadline Manager</a>
+                        </li>
+                    @endif
+                    @if(Gate::allows('admin', Auth::user()))
+                        <li class="nav-item {{ (request()->is('admin*')) ? 'active' : '' }}">
+                            <a class="nav-link" href="/admin/teachers">Admin</a>
+                        </li>
+                    @endif
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        @guest
+                           <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        @else
+                        <a class="nav-link" href="{{ route('logout') }}" id="logout">Logout</a>
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                       @csrf
+                                   </form>
+                        @endguest
                     </li>
                 </ul>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Teacher;
 use Illuminate\Http\Request;
+use Gate;
+use Auth;
 
 class TeacherController extends Controller
 {
@@ -14,8 +16,13 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
-        return view('admin/teachers/index', compact('teachers'));
+        if (Gate::allows('admin', Auth::user())){
+            $teachers = Teacher::all();
+            return view('admin/teachers/index', compact('teachers'));
+        } else {
+            return view ('/auth/login');
+        }
+        
     }
 
     /**
@@ -25,7 +32,11 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('admin/teachers/create');
+        if (Gate::allows('admin', Auth::user())){
+            return view('admin/teachers/create');
+        } else{
+            return view ('/auth/login');
+        }
     }
 
     /**
@@ -36,18 +47,22 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required'
-        ]);
+        if (Gate::allows('admin', Auth::user())){
+            $request->validate([
+                'first_name'=>'required',
+                'last_name'=>'required'
+            ]);
 
-        $teacher = new Teacher([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name')
-        ]);
+            $teacher = new Teacher([
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name')
+            ]);
 
-        $teacher->save();
-        return redirect('/admin/teachers')->with('success', 'Docent opgeslagen!');
+            $teacher->save();
+            return redirect('/admin/teachers')->with('success', 'Docent opgeslagen!');
+        } else{
+            return view ('/auth/login');
+        }
     }
 
     /**
@@ -58,7 +73,11 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        if (Gate::allows('admin', Auth::user())){
+
+        } else {
+            return view ('/auth/login');
+        }
     }
 
     /**
@@ -69,7 +88,11 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        return view('admin/teachers/edit', compact('teacher'));
+        if (Gate::allows('admin', Auth::user())){
+            return view('admin/teachers/edit', compact('teacher'));
+        } else{
+            return view ('/auth/login');
+        }
     }
 
     /**
@@ -81,16 +104,20 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required'
-        ]);
+        if (Gate::allows('admin', Auth::user())){
+            $request->validate([
+                'first_name'=>'required',
+                'last_name'=>'required'
+            ]);
 
-        $teacher->first_name =  $request->get('first_name');
-        $teacher->last_name = $request->get('last_name');
-        $teacher->save();
+            $teacher->first_name =  $request->get('first_name');
+            $teacher->last_name = $request->get('last_name');
+            $teacher->save();
 
-        return redirect('/admin/teachers')->with('success', 'Docent geupdate!');
+            return redirect('/admin/teachers')->with('success', 'Docent geupdate!');
+        } else {
+            return view ('/auth/login');
+        }
     }
 
     /**
@@ -102,7 +129,11 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        $teacher->delete();
-        return redirect('/admin/teachers')->with('success', 'Docent verwijderd!');
+        if (Gate::allows('admin', Auth::user())){
+            $teacher->delete();
+            return redirect('/admin/teachers')->with('success', 'Docent verwijderd!');
+        } else {
+            return view ('/auth/login');
+        }
     }
 }
