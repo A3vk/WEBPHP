@@ -9,15 +9,7 @@ use App\Traits\Encryptable;
 class Test extends Model
 {
     use Encryptable;
-
-    protected $encryptable = [
-        'name',
-        'file',
-        'grade',
-        'date',
-
-    ];
-
+    
     protected $fillable = [
         'type_id',
         'module_id',
@@ -25,6 +17,13 @@ class Test extends Model
         'grade',
         'date',
         'is_complete'
+    ];
+
+    protected $encryptable = [
+        'name',
+        'file',
+        'grade',
+        'date',
     ];
 
     public function type()
