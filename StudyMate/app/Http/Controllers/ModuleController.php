@@ -56,10 +56,12 @@ class ModuleController extends Controller
         ]);
         $module->save();
 
+        $data = array();
         foreach ($request->get('teachers') as $teacher) {
-            $module->teachers()->attach($teacher, ['is_coordinator' => ($teacher == $request->get('coordinator')), 'is_my_teacher' => ($teacher == $request->get('teacher')), 'created_at' => now()]);
+            $data[$teacher] = ['is_coordinator' => ($teacher == $request->get('coordinator')), 'is_my_teacher' => ($teacher == $request->get('teacher'))];
         }
-        $module->save();
+
+        $module->teachers()->sync($data);
 
         return redirect('/admin/modules')->with('success', 'Vak opgeslagen!');
     }
@@ -68,11 +70,11 @@ class ModuleController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Module  $module
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Module $module)
     {
-        //
+        return view('admin/modules/show', compact('module'));
     }
 
     /**

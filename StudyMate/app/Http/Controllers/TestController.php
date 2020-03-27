@@ -39,7 +39,7 @@ class TestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -49,8 +49,8 @@ class TestController extends Controller
         ]);
 
         $test = new Test([
-            'type_id' => $request->get('type'),
-            'module_id' => $request->get('module'),
+            'type' => $request->get('type'),
+            'module' => $request->get('module'),
             'name' => $request->get('name'),
             'grade' => $request->get('grade'),
             'date' => $request->get('date'),
@@ -68,22 +68,25 @@ class TestController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Test $test)
     {
-        //
+        return view('admin/tests/show', compact('test'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Test $test)
     {
-        return view('admin/tests/edit');
+        $modules = Module::all();
+        $tags = Tag::all()->diff(Tag::whereIn('id', array_column($test->tags->toArray(), 'id'))->get());
+        $types = Type::all();
+        return view('admin/tests/edit', compact('test', 'modules', 'tags', 'types'));
     }
 
     /**
@@ -91,21 +94,37 @@ class TestController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Test $test)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'completed'=>'required'
+        ]);
+
+        $test->type = $request->get('type');
+        $test->module = $request->get('module');
+        $test->name = $request->get('name');
+        $test->grade = $request->get('grade');
+        $test->date = $request->get('date');
+        $test->is_complete = ($request->get('completed') == 'on' ? true : false);
+        $test->updated_at = now();
+
+        $test->tags()->sync($request->get('tags'));
+        return redirect('/admin/tests')->with('success', 'Toets geupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @param \App\Test $test
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Test $test)
     {
-        dd($test);
+        $test->delete();
+        return redirect('/admin/tests')->with('success', 'Toets verwijderd!');
     }
 }

@@ -55,11 +55,11 @@ class TeacherController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Teacher $teacher)
     {
-        //
+        return view('admin/teachers/show', compact('teacher'));
     }
 
     /**

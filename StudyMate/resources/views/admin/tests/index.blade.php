@@ -35,11 +35,13 @@
                     <td>{{ $test->type->name }}</td>
                     <td>{{ $test->date }}</td>
                     <td>{{ $test->grade }}</td>
-                    <td>{{ $test->is_complete }}</td>
+                    <td>{{ $test->is_complete ? 'Ja' : 'Nee' }}</td>
                     <td class="d-flex">
-                        <a class="btn btn-warning" href="{{ route('tests.edit', $test->id) }}"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-success" href="{{ route('tests.show', $test->id) }}"><i class="far fa-eye"></i></a>
+                        <a class="btn btn-warning ml-1" href="{{ route('tests.edit', $test->id) }}"><i class="fas fa-pen"></i></a>
                         <form action="{{ route('tests.destroy', $test->id) }}" method="POST">
                             @csrf
+                            @method('DELETE')
                             <button class="btn btn-danger ml-1" type="submit"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
