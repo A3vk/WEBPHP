@@ -29,7 +29,8 @@
                         <td>{{ $teacher->first_name }}</td>
                         <td>{{ $teacher->last_name }}</td>
                         <td class="d-flex">
-                            <a class="btn btn-warning" href="{{ route('teachers.edit', $teacher->id) }}"><i class="fas fa-pen"></i></a>
+                            <a class="btn btn-success" href="{{ route('teachers.show', $teacher->id) }}"><i class="far fa-eye"></i></a>
+                            <a class="btn btn-warning ml-1" href="{{ route('teachers.edit', $teacher->id) }}"><i class="fas fa-pen"></i></a>
                             <form action="{{ route('teachers.destroy', $teacher->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

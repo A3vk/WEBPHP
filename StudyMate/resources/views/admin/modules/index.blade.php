@@ -32,10 +32,11 @@
                     <td>{{ $module->name }}</td>
                     <td>{{ $module->period }}</td>
                     <td>{{ $module->block }}</td>
-                    <td>{{ $module->obtainded_credits }}</td>
+                    <td>{{ $module->obtained_credits }}</td>
                     <td>{{ $module->total_credits }}</td>
                     <td class="d-flex">
-                        <a class="btn btn-warning" href="{{ route('modules.edit', $module->id) }}"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-success" href="{{ route('modules.show', $module->id) }}"><i class="far fa-eye"></i></a>
+                        <a class="btn btn-warning ml-1" href="{{ route('modules.edit', $module->id) }}"><i class="fas fa-pen"></i></a>
                         <form action="{{ route('modules.destroy', $module->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
