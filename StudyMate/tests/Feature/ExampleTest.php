@@ -12,10 +12,20 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
+    // public function testBasicTest()
+    // {
+        
+    //     // $response = $this->call('GET', '/admin/teachers');
 
-        $response->assertStatus(200);
+    //     // $this->partialMock(Teacher::class, function ($mock) {
+    //     //     $mock->shouldReceive('all')->once();
+    //     // });
+
+    //     // $this->assertEquals(200, $response->status());
+    // }
+
+    /** @test **/
+    public function only_admins_can_see_the_teachers_list() {
+        $response = $this->get('/admins/teachers')->assertRedirect('/');
     }
 }
