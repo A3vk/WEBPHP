@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use \Crypt;
 
-
+//Custom Trait that handels the encrypting and dycripting of model properties.
 trait Encryptable
 {
     public function getAttribute($key)
