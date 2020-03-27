@@ -20,7 +20,7 @@ class TeacherController extends Controller
             $teachers = Teacher::all();
             return view('admin/teachers/index', compact('teachers'));
         } else {
-            return view ('/auth/login');
+            return view ('/auth/wrongRole');
         }
         
     }
@@ -35,7 +35,7 @@ class TeacherController extends Controller
         if (Gate::allows('admin', Auth::user())){
             return view('admin/teachers/create');
         } else{
-            return view ('/auth/login');
+            return view ('/auth/wrongRole');
         }
     }
 
@@ -61,7 +61,7 @@ class TeacherController extends Controller
             $teacher->save();
             return redirect('/admin/teachers')->with('success', 'Docent opgeslagen!');
         } else{
-            return view ('/auth/login');
+            return view ('/auth/wrongRole');
         }
     }
 
@@ -76,7 +76,7 @@ class TeacherController extends Controller
         if (Gate::allows('admin', Auth::user())){
 
         } else {
-            return view ('/auth/login');
+            return view ('/auth/wrongRole');
         }
     }
 
@@ -91,7 +91,7 @@ class TeacherController extends Controller
         if (Gate::allows('admin', Auth::user())){
             return view('admin/teachers/edit', compact('teacher'));
         } else{
-            return view ('/auth/login');
+            return view ('/auth/wrongRole');
         }
     }
 
@@ -116,7 +116,7 @@ class TeacherController extends Controller
 
             return redirect('/admin/teachers')->with('success', 'Docent geupdate!');
         } else {
-            return view ('/auth/login');
+            return view ('/auth/wrongRole');
         }
     }
 
@@ -133,7 +133,7 @@ class TeacherController extends Controller
             $teacher->delete();
             return redirect('/admin/teachers')->with('success', 'Docent verwijderd!');
         } else {
-            return view ('/auth/login');
+            return view ('/auth/wrongRole');
         }
     }
 }
