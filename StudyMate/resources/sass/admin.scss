@@ -1,0 +1,40 @@
+.add-item {
+    right: 0;
+}
+
+.table-fixed {
+    display: flex;
+    flex-flow: column;
+
+    td, th {
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    thead {
+        flex: 0 0 auto;
+        width: calc(100% - 1em);
+        color: #fff;
+    }
+
+    tbody {
+        overflow-y: scroll;
+        max-height: 695px;
+
+        tr {
+            width: 100%;
+        }
+    }
+
+    thead, tbody tr {
+        display: table;
+        table-layout: fixed;
+    }
+}
+
+.side {
+    display: flex;
+}

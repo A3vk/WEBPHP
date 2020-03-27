@@ -6,8 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
+    protected $fillable = [
+        'type_id',
+        'module_id',
+        'name',
+        'grade',
+        'date',
+        'is_complete'
+    ];
+
     //
-    public function types()
+    public function type()
     {
         return $this->belongsTo(Type::class);
     }
@@ -17,7 +26,7 @@ class Test extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function modules() 
+    public function module()
     {
         return $this->belongsTo(Module::class);
     }
