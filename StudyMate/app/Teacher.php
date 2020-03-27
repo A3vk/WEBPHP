@@ -3,10 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Encryptable;
 
 class Teacher extends Model
 {
+    use Encryptable;
+
     protected $fillable = [
+        'first_name',
+        'last_name'
+    ];
+
+    protected $encryptable = [
         'first_name',
         'last_name'
     ];
