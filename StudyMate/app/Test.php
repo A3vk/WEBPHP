@@ -3,11 +3,30 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Encryptable;
+
 
 class Test extends Model
 {
-    //
-    public function types()
+    use Encryptable;
+    
+    protected $fillable = [
+        'type_id',
+        'module_id',
+        'name',
+        'grade',
+        'date',
+        'is_complete'
+    ];
+
+    protected $encryptable = [
+        'name',
+        'file',
+        'grade',
+        'date',
+    ];
+
+    public function type()
     {
         return $this->belongsTo(Type::class);
     }
@@ -17,7 +36,7 @@ class Test extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function modules() 
+    public function module()
     {
         return $this->belongsTo(Module::class);
     }

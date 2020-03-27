@@ -12,9 +12,9 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            ['name' => 'tentamen', 'created_at' => Now(), 'updated_at' => Now()],
-            ['name' => 'assessment', 'created_at' => Now(), 'updated_at' => Now()],
-            ['name' => 'assignment', 'created_at' => Now(), 'updated_at' => Now()]
+            ['name' => Crypt::encrypt('tentamen'), 'created_at' => Now(), 'updated_at' => Now()],
+            ['name' => Crypt::encrypt('assessment'), 'created_at' => Now(), 'updated_at' => Now()],
+            ['name' => Crypt::encrypt('assignment'), 'created_at' => Now(), 'updated_at' => Now()]
         ]);
     }
 }

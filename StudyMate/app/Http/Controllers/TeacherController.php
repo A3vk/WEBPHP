@@ -55,7 +55,8 @@ class TeacherController extends Controller
 
             $teacher = new Teacher([
                 'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name')
+                'last_name' => $request->get('last_name'),
+                'created_at' => now()
             ]);
 
             $teacher->save();
@@ -69,12 +70,12 @@ class TeacherController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Teacher $teacher)
     {
         if (Gate::allows('admin', Auth::user())){
-
+            return view('admin/teachers/show', compact('teacher'));
         } else {
             return view ('/auth/wrongRole');
         }
@@ -112,6 +113,7 @@ class TeacherController extends Controller
 
             $teacher->first_name =  $request->get('first_name');
             $teacher->last_name = $request->get('last_name');
+            $teacher->updated_at = now();
             $teacher->save();
 
             return redirect('/admin/teachers')->with('success', 'Docent geupdate!');

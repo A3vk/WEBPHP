@@ -1,5 +1,13 @@
 window.onload = () => {
-    let container = document.querySelector('.flexible-input');
+    let teacherContainer = document.querySelector('.teacher-input');
+    let tagContainer = document.querySelector('.tag-input');
+    let container = teacherContainer;
+    let type = 'teachers';
+
+    if(!container) {
+        container = tagContainer;
+        type = 'tags';
+    }
 
     if(container) {
         let deleteButtons = container.querySelectorAll('.table button');
@@ -8,40 +16,45 @@ window.onload = () => {
         let tableBody = container.querySelector('.table tbody');
 
         deleteButtons.forEach((button) => {
-            addDeleteCommand(button);
+            addDeleteCommand(button, container);
         });
 
         addButton.onclick = () => {
             let selectedOption = addSelect.options[addSelect.selectedIndex];
-            let teacherId = addSelect.value;
-            let teacherName = selectedOption.text;
 
-            let row = document.createElement('tr');
+            if(selectedOption) {
+                let id = addSelect.value;
+                let name = selectedOption.text;
 
-            let name = document.createElement('td');
-            name.innerText = teacherName;
-            let hidden = document.createElement('input');
-            hidden.type = 'hidden';
-            hidden.name = 'teachers[]';
-            hidden.value = teacherId;
-            name.appendChild(hidden);
+                let row = document.createElement('tr');
 
-            row.appendChild(name);
+                let nameTd = document.createElement('td');
+                nameTd.innerText = name;
+                let hidden = document.createElement('input');
+                hidden.type = 'hidden';
+                hidden.name = `${type}[]`;
+                hidden.value = id;
+                nameTd.appendChild(hidden);
 
-            row.appendChild(addRadio('coordinator', teacherId));
-            row.appendChild(addRadio('teacher', teacherId));
+                row.appendChild(nameTd);
 
-            let action = document.createElement('td');
-            let deleteButton = document.createElement('button');
-            deleteButton.className = 'btn btn-danger';
-            deleteButton.type = 'button';
-            deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
-            addDeleteCommand(deleteButton);
-            action.appendChild(deleteButton);
-            row.appendChild(action);
-            tableBody.appendChild(row);
+                if(teacherContainer) {
+                    row.appendChild(addRadio('coordinator', id));
+                    row.appendChild(addRadio('teacher', id));
+                }
 
-            addSelect.removeChild(selectedOption);
+                let action = document.createElement('td');
+                let deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-danger';
+                deleteButton.type = 'button';
+                deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+                addDeleteCommand(deleteButton, container);
+                action.appendChild(deleteButton);
+                row.appendChild(action);
+                tableBody.appendChild(row);
+
+                addSelect.removeChild(selectedOption);
+            }
         };
     }
 };
@@ -68,22 +81,16 @@ function addRadio(type, id) {
     return input;
 }
 
-function addDeleteCommand(button) {
-    let id, name;
-    button.onclick = (e) => {
-        if(e.path[1].tagName === 'svg') {
-            let td = e.path[4].firstChild;
-            id = td.childNodes[1].value;
-            name = td.childNodes[0].wholeText;
-            e.path[5].removeChild(e.path[4]);
-        } else {
-            let td = e.path[2];
-            id = td[1].value;
-            name = td[0].wholeText;
-            e.path[3].removeChild(e.path[2]);
-        }
+function addDeleteCommand(button, container) {
 
-        let container = document.querySelector('.flexible-input');
+    button.onclick = () => {
+        let tbody = container.querySelector('table tbody');
+        let tr = button.parentNode.parentNode;
+        let name = tr.firstElementChild.childNodes[0].wholeText;
+        let id = tr.firstElementChild.childNodes[1].value;
+
+        tbody.removeChild(tr);
+
         let addSelect = container.querySelector('.add select');
 
         let option = document.createElement('option');

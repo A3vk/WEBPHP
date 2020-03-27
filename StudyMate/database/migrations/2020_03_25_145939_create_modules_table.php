@@ -16,10 +16,10 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('period');
-            $table->unsignedInteger('block');
-            $table->unsignedInteger('total_credits');
-            $table->unsignedInteger('obtained_credits');   
+            $table->string('period');
+            $table->string('block');
+            $table->string('total_credits');
+            $table->string('obtained_credits');   
             $table->timestamps();
         });
     }
