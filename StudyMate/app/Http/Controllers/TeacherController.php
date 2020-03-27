@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Teacher;
 use Illuminate\Http\Request;
+use Gate;
+use Auth;
 
 class TeacherController extends Controller
 {

@@ -5,13 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Traits\Encryptable;
 
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use Encryptable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,10 +19,6 @@ class User extends Authenticatable
     protected $fillable = [
         'username', 
         'password',
-    ];
-
-    protected $encryptable = [
-        'username'
     ];
 
     /**
