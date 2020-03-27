@@ -10,6 +10,9 @@ trait Encryptable
     public function getAttribute($key)
     {
         $value = parent::getAttribute($key);
+        if ($value == null){
+            return null;
+        }
 
         if (in_array($key, $this->encryptable)) {
             $value = Crypt::decrypt($value);
