@@ -3,8 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use App\Service;
-use Mockery;
+use App\Teacher;
 
 class ExampleTest extends TestCase
 {
@@ -13,10 +12,13 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    // public function testBasicTest()
-    // {
-    //     // $this->partialMock(Teacher::class, function ($mock) {
-    //     //     $mock->shouldReceive('all')->once();
-    //     // });
-    // }
+    public function testBasicTest()
+    {
+        $teacher = new Teacher([
+            'first_name' => 'Carl',
+            'last_name' => 'Carlsen',
+        ]);
+        
+        // $this.assertEquals('Carl', $teacher->first_name);
+    }
 }
