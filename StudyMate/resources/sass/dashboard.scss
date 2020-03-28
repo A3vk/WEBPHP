@@ -1,0 +1,19 @@
+.progress-circle {
+    .circle {
+        transform: rotate(-90deg);
+    }
+}
+
+.meters {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    .block {
+        margin-right: 50px;
+    }
+
+    .total {
+        margin-left: 50px;
+    }
+}

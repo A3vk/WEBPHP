@@ -30,6 +30,10 @@
                         <input type="number" class="form-control" name="block" min="1" max="16" value="1">
                     </div>
                     <div class="form-group">
+                        <label for="block">Cijfer</label>
+                        <input type="text" class="form-control" name="block" min="1" max="16">
+                    </div>
+                    <div class="form-group">
                         <label for="total_credits">Te behalen studiepunten</label>
                         <input type="number" class="form-control" name="total_credits" min="1" value="1">
                     </div>

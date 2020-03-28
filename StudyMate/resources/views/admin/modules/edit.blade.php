@@ -31,6 +31,10 @@
                         <input type="number" class="form-control" name="block" min="1" max="16" value="{{ $module->block }}">
                     </div>
                     <div class="form-group">
+                        <label for="block">Cijfer</label>
+                        <input type="text" class="form-control" name="block" min="1" max="16" value="{{ $module->grade }}">
+                    </div>
+                    <div class="form-group">
                         <label for="total_credits">Te behalen studiepunten</label>
                         <input type="number" class="form-control" name="total_credits" min="1" value="{{ $module->total_credits }}">
                     </div>
