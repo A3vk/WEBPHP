@@ -17,7 +17,7 @@ class ExampleTest extends TestCase
      */
 
     /** @test **/
-    public function admin_can_see_teachers_list()
+    public function adminCanSeeTeachersList()
     {
         $user = new User([
             'username' => 'test',
@@ -28,12 +28,12 @@ class ExampleTest extends TestCase
     }
 
     /** @test **/
-    public function only_admins_can_see_the_teachers_list() {
+    public function onlyAdminsCanSeeTheTeachersList() {
         $response = $this->get('/admin/teachers')->assertRedirect('/');
     }
 
     /** @test **/
-    public function admin_can_see_the_tests_list()
+    public function adminCanSeeTheTestsList()
     {
         $user = new User([
             'username' => 'test',
@@ -44,7 +44,7 @@ class ExampleTest extends TestCase
     }
 
     /** @test **/
-    public function admin_can_see_the_modules_list()
+    public function adminCanSeeTheModulesList()
     {
         $user = new User([
             'username' => 'test',
