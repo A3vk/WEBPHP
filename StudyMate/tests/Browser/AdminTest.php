@@ -16,7 +16,7 @@ class AdminTest extends DuskTestCase
      */
 
     /** @test */
-    public function testExample()
+    public function adminLoginShowsAdminButtonOnDashboard()
     {
         $this->browse(function (Browser $browser) {
             $this->browse(function ($browser)
