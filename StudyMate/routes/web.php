@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
 
 Auth::routes();
 
+Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('admin/teachers', 'TeacherController');

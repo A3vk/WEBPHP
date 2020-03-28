@@ -7,15 +7,8 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+    /** @test **/
+    public function only_admins_can_see_the_teachers_list() {
+        $response = $this->get('/admins/teachers')->assertRedirect('/');
     }
 }
