@@ -22,4 +22,6 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 
-public
+StudyMate/public/css
+StudyMate/public/js
+StudyMate/public/mix-manifest.json

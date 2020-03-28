@@ -14,5 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('role')->prefix('admin')->group(function () {
+    Route::resource('teachers', 'TeacherController');
+    Route::resource('modules', 'ModuleController');
+    Route::resource('tests', 'TestController');
+});
+
+
+

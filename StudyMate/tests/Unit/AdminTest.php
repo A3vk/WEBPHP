@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use App\Teacher;
 
 class ExampleTest extends TestCase
 {
@@ -13,6 +14,11 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $teacher = new Teacher([
+            'first_name' => 'Carl',
+            'last_name' => 'Carlsen',
+        ]);
+        
+        // $this.assertEquals('Carl', $teacher->first_name);
     }
 }
