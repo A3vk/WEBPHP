@@ -20,7 +20,11 @@ Auth::routes();
 Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('admin/teachers', 'TeacherController');
-Route::resource('admin/modules', 'ModuleController');
-Route::resource('admin/tests', 'TestController');
+Route::middleware('role')->prefix('admin')->group(function () {
+    Route::resource('teachers', 'TeacherController');
+    Route::resource('modules', 'ModuleController');
+    Route::resource('tests', 'TestController');
+});
+
+
 
