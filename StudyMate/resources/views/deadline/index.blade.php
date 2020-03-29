@@ -11,7 +11,7 @@
             </div>
         @endif
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive deadline-table p-4">
         <table class="table table-hover table-fixed">
             <thead class="bg-success">
             <tr>

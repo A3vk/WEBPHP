@@ -19,31 +19,31 @@
             <div class="value-inputs col-md-4">
                 <div class="form-group">
                     <label for="name">Naam</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $module->name }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $module->name }}">
                 </div>
                 <div class="form-group">
                     <label for="period">Periode</label>
-                    <input type="number" class="form-control" id="period" name="period" min="1" max="4"  value="{{ $module->period }}">
+                    <input type="number" class="form-control @error('period') is-invalid @enderror" id="period" name="period" min="1" max="4"  value="{{ $module->period }}">
                 </div>
                 <div class="form-group">
                     <label for="block">Blok</label>
-                    <input type="number" class="form-control" id="block" name="block" min="1" max="16" value="{{ $module->block }}">
+                    <input type="number" class="form-control @error('block') is-invalid @enderror" id="block" name="block" min="1" max="16" value="{{ $module->block }}">
                 </div>
                 <div class="form-group">
                     <label for="grade">Cijfer</label>
-                    <input type="text" class="form-control" id="grade" name="grade" min="1" max="16" value="{{ $module->grade }}">
+                    <input type="text" class="form-control @error('grade') is-invalid @enderror" id="grade" name="grade" min="1" max="16" value="{{ $module->grade }}">
                 </div>
                 <div class="form-group">
                     <label for="total_credits">Te behalen studiepunten</label>
-                    <input type="number" class="form-control" id="total_credits" name="total_credits" min="1" value="{{ $module->total_credits }}">
+                    <input type="number" class="form-control @error('total_credits') is-invalid @enderror" id="total_credits" name="total_credits" min="1" value="{{ $module->total_credits }}">
                 </div>
                 <div class="form-group">
                     <label for="obtained_credits">Behaalde studiepunten</label>
-                    <input type="number" class="form-control" id="obtained_credits" name="obtained_credits" min="0" value="{{ $module->obtained_credits }}">
+                    <input type="number" class="form-control @error('obtained_credits') is-invalid @enderror" id="obtained_credits" name="obtained_credits" min="0" value="{{ $module->obtained_credits }}">
                 </div>
             </div>
             <div class="teacher-input col-md-6">
-                <label>Docenten</label>
+                <label for="teacher" class="font-weight-bold">Docenten</label>
                 <table class="table table-fixed">
                     <thead class="bg-success">
                     <tr>
@@ -77,7 +77,7 @@
                     </tbody>
                 </table>
                 <div class="add d-flex">
-                    <select class="form-control">
+                    <select id="teacher" class="form-control">
                         @foreach($teachers as $teacher)
                             <option value="{{ $teacher->id }}">{{ $teacher->fullName() }}</option>
                         @endforeach
