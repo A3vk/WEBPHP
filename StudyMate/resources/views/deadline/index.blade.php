@@ -46,7 +46,6 @@
                                     @csrf
                                     <input type="checkbox" id="Check" name="completed"  {{ $test->is_complete ? 'checked' : '' }}>
                                     <input type="hidden" name="id" value="{{ $test->id }}">
-                                    <input type="submit">
                                 </form>
                             </td>
                             <td>{{ $test->module->name }}</td>
@@ -59,8 +58,8 @@
                             @endforeach
                             <td>{{ date('d-m-Y\ H:i', strtotime($test->date))}}</td>
                             <td class="d-flex">
-                                <a class="btn btn-success" href="/deadline/show?id={{ $test->id }}"><i class="far fa-eye"></i></a>
-                                <a class="btn btn-warning ml-1" href="/deadline/edit?id={{ $test->id }}"><i class="fas fa-pen"></i></a>
+                                <a class="btn btn-success" dusk="show" href="/deadline/show?id={{ $test->id }}"><i class="far fa-eye"></i></a>
+                                <a class="btn btn-warning ml-1" dusk="edit" href="/deadline/edit?id={{ $test->id }}"><i class="fas fa-pen"></i></a>
                             </td>
                         </tr>
                     @endforeach
