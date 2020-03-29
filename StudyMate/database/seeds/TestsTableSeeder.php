@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Crypt;
 
 class TestsTableSeeder extends Seeder
 {
@@ -34,10 +35,10 @@ class TestsTableSeeder extends Seeder
             ['type_id' => 3, 'module_id' => 2, 'name' => Crypt::encrypt('Uren regestratie'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2018-10-7 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
             ['type_id' => 3, 'module_id' => 2, 'name' => Crypt::encrypt('Beoordelingsformulier film'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2018-10-7 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
 
-            //programeren 2 
+            //programeren 2
             ['type_id' => 2, 'module_id' => 3, 'name' => Crypt::encrypt('Dungeon crawler'), 'file' => null, 'grade' => Crypt::encrypt('7.00'), 'date' => Crypt::encrypt('2019-1-18 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
 
-            //databases 2 
+            //databases 2
             ['type_id' => 1, 'module_id' => 4, 'name' => Crypt::encrypt('Tentamen'), 'file' => null, 'grade' => Crypt::encrypt('7.10'), 'date' => Crypt::encrypt('2019-1-8 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
 
             //Programeren 3
@@ -48,7 +49,7 @@ class TestsTableSeeder extends Seeder
             ['type_id' => 3, 'module_id' => 6, 'name' => Crypt::encrypt('Blog'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2019-2-27 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
             ['type_id' => 3, 'module_id' => 6, 'name' => Crypt::encrypt('Voormeting'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2019-2-13 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
             ['type_id' => 3, 'module_id' => 6, 'name' => Crypt::encrypt('Duo presentatie'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2019-4-14 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
-            ['type_id' => 3, 'module_id' => 6, 'name' => Crypt::encrypt('Terugblik presentatie'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2019-4-14:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
+            ['type_id' => 3, 'module_id' => 6, 'name' => Crypt::encrypt('Terugblik presentatie'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2019-4-14 14:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
             ['type_id' => 3, 'module_id' => 6, 'name' => Crypt::encrypt('Eindpresentatie'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2019-4-14 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
             ['type_id' => 3, 'module_id' => 6, 'name' => Crypt::encrypt('Eindopdracht'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2019-3-28 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
 
