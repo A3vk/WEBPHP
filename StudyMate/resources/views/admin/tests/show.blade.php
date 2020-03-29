@@ -35,6 +35,13 @@
                         <label class="custom-control-label" for="customCheck">Afgerond</label>
                     </div>
                 </div>
+                <div class="form-group">
+                    @isset($test->file)
+                        <a href="{{ asset('storage/'.$test->file) }}" class="btn btn-primary" download>Download file</a>
+                    @else
+                        <p>Geen file geupload</p>
+                    @endisset
+                </div>
             </div>
             <div>
                 <label for="tag">Tags</label>

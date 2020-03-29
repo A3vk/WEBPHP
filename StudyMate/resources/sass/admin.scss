@@ -2,6 +2,16 @@
     right: 0;
 }
 
+.add {
+    width: 300px;
+}
+
+.teacher-input {
+    table tbody {
+        max-height: 500px;
+    }
+}
+
 .table-fixed {
     display: flex;
     flex-flow: column;
@@ -33,12 +43,4 @@
         display: table;
         table-layout: fixed;
     }
-}
-
-.side {
-    display: flex;
-}
-
-.add {
-    width: 250px;
 }
