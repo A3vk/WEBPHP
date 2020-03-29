@@ -58,9 +58,11 @@ class TestController extends Controller
         ]);
         $test->save();
 
-        $ext = $request->file('file')->extension();
-        $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
-        $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id  . '.' . $ext;
+        if($request->file('file')) {
+            $ext = $request->file('file')->extension();
+            $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
+            $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id . '.' . $ext;
+        }
         $test->save();
 
         return redirect('/admin/tests')->with('success', 'Toets opgeslagen!');
@@ -110,9 +112,11 @@ class TestController extends Controller
         $test->name = $request->get('name');
         $test->updated_at = now();
 
-        $ext = $request->file('file')->extension();
-        $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
-        $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id  . '.' . $ext;
+        if($request->file('file')) {
+            $ext = $request->file('file')->extension();
+            $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
+            $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id . '.' . $ext;
+        }
         $test->save();
 
         return redirect('/admin/tests')->with('success', 'Toets geupdate!');
