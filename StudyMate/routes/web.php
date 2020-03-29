@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('role')->prefix('admin')->group(function () {
     Route::resource('teachers', 'TeacherController');
