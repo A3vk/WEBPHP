@@ -78,7 +78,7 @@ class TestsTableSeeder extends Seeder
             ['type_id' => 2, 'module_id' => 11, 'name' => Crypt::encrypt('Boef'), 'file' => null, 'grade' => Crypt::encrypt('8.20'), 'date' => Crypt::encrypt('2020-3-26 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
 
             //Gesprekken
-            ['type_id' => 3, 'module_id' => 12, 'name' => Crypt::encrypt('Huiswerk'), 'file' => null, 'grade' => Crypt::encrypt('1.00'), 'date' => Crypt::encrypt('2019-12-2'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
+            ['type_id' => 3, 'module_id' => 12, 'name' => Crypt::encrypt('Huiswerk'), 'file' => null, 'grade' => Crypt::encrypt('1.00'), 'date' => Crypt::encrypt('2019-12-2 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
             ['type_id' => 2, 'module_id' => 12, 'name' => Crypt::encrypt('Assessment'), 'file' => null, 'grade' => Crypt::encrypt('Voldaan'), 'date' => Crypt::encrypt('2020-1-20 23:00:00'), 'is_complete' => true, 'created_at' => Now(), 'updated_at' => Now()],
 
             //WebJs
