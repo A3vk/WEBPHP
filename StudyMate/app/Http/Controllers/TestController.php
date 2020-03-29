@@ -45,21 +45,23 @@ class TestController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'completed'=>'required'
         ]);
 
         $test = new Test([
-            'type' => $request->get('type'),
-            'module' => $request->get('module'),
+            'type_id' => $request->get('type'),
+            'module_id' => $request->get('module'),
             'name' => $request->get('name'),
             'grade' => $request->get('grade'),
-            'date' => $request->get('date'),
-            'is_complete' => ($request->get('completed') == 'on' ? true : false),
+            'date' => null,
+            'is_complete' => false,
             'created_at' => now()
         ]);
         $test->save();
 
-        $test->tags()->sync($request->get('tags'));
+        $ext = $request->file('file')->extension();
+        $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
+        $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id  . '.' . $ext;
+        $test->save();
 
         return redirect('/admin/tests')->with('success', 'Toets opgeslagen!');
     }
@@ -100,18 +102,19 @@ class TestController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'completed'=>'required'
         ]);
 
-        $test->type = $request->get('type');
-        $test->module = $request->get('module');
+        $test->type_id = $request->get('type');
+        $test->module_id = $request->get('module');
         $test->name = $request->get('name');
         $test->grade = $request->get('grade');
-        $test->date = $request->get('date');
-        $test->is_complete = ($request->get('completed') == 'on' ? true : false);
         $test->updated_at = now();
 
-        $test->tags()->sync($request->get('tags'));
+        $ext = $request->file('file')->extension();
+        $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
+        $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id  . '.' . $ext;
+        $test->save();
+
         return redirect('/admin/tests')->with('success', 'Toets geupdate!');
     }
 
