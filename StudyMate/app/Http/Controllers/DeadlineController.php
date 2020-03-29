@@ -63,18 +63,18 @@ class DeadlineController extends Controller
                 break;
             
             default:
-            $tests = $tests->sort(
-                function ($a, $b) {
-                    $dateA = new DateTime($a->date);
-                    $dateB = new DateTime($b->date);
-    
-                    $result = 1;
-                    if($dateA > $dateB) {
-                        $result = -1;
-                    }
-                    // sort by column1 first, then 2, and so on
-                    return strcmp($a->is_complete, $b->is_complete) ?: $result;
-                });
+                $tests = $tests->sort(
+                    function ($a, $b) {
+                        $dateA = new DateTime($a->date);
+                        $dateB = new DateTime($b->date);
+        
+                        $result = 1;
+                        if($dateA > $dateB) {
+                            $result = -1;
+                        }
+                        // sort by column1 first, then 2, and so on
+                        return strcmp($a->is_complete, $b->is_complete) ?: $result;
+                    });
                 break;
         }
        

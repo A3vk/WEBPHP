@@ -16,13 +16,14 @@ class CheckRole
      * @return mixed
      */
     public function handle($request, Closure $next){
+    
         $uri = explode('/', $request->path())[0];
 
-            if ( $uri === 'admin' && Gate::allows('admin', Auth::user())){
-                return $next($request);
-            } else if ($uri === 'deadline' && Gate::allows('deadline', Auth::user())){
-                return $next($request);
-            }
-            return redirect('/');
+        if ( $uri === 'admin' && Gate::allows('admin', Auth::user())){
+            return $next($request);
+        } else if ($uri === 'deadline' && Gate::allows('deadline', Auth::user())){
+            return $next($request);
+        }
+        return redirect('/');
     }
 }
