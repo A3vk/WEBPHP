@@ -39,8 +39,6 @@
             </tr>
             </thead>
             <tbody>
-                
-                    {{csrf_field()}}
                     @foreach($tests as $test)
                         <tr>
                             <td>
