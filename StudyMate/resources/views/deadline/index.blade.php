@@ -37,12 +37,17 @@
             </tr>
             </thead>
             <tbody>
-                <form action="{{ action('DeadlineController@save') }}" method="POST">
+                
                     {{csrf_field()}}
                     @foreach($tests as $test)
                         <tr>
                             <td>
-                                <input class="" type="checkBox" id="teacher{{ $test->id }}" name="test" value="{{ $test->id }}" {{ $test->is_complete ? 'checked' : '' }}>
+                                <form action="{{ action('DeadlineController@save') }}" method="POST" id = completeForum>
+                                    @csrf
+                                    <input type="checkbox" id="Check" name="completed"  {{ $test->is_complete ? 'checked' : '' }}>
+                                    <input type="hidden" name="id" value="{{ $test->id }}">
+                                    <input type="submit">
+                                </form>
                             </td>
                             <td>{{ $test->module->name }}</td>
                             <td>{{ $test->type->name }}</td>
@@ -59,7 +64,6 @@
                             </td>
                         </tr>
                     @endforeach
-                </form>
             </tbody>
         </table>
     </div>

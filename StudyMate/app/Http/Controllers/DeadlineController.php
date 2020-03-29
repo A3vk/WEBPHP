@@ -78,8 +78,12 @@ class DeadlineController extends Controller
         return view('deadline/index', compact('tests'));
     }
 
-    public function save($tests)
+    public function save(Request $request)
     {
-      
+        $test = Test::find($request->get('id'));
+        $test->is_complete = ($request->get('completed') == 'on' ? true : false);
+        
+        $test->save();
+        return redirect('deadline/index');
     }
 }

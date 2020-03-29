@@ -29,7 +29,7 @@ Route::middleware('role')->prefix('admin')->group(function () {
 
 Route::middleware('role')->prefix('deadline')->group(function () {
     Route::get('/index', 'DeadlineController@index');
-    Route::post('/index', 'DeadlineController@save');
+    Route::post('/save', 'DeadlineController@save');
 });
 
 
