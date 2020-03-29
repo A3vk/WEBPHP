@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Test;
 use DateTime;
+use App\Module;
+use App\Type;
+use App\Tag;
 
 class DeadlineController extends Controller
 {
@@ -85,5 +88,18 @@ class DeadlineController extends Controller
         
         $test->save();
         return redirect('deadline/index');
+    }
+
+    public function show(Request $request){
+        $test = Test::find($request->get('id'));
+        return view('deadline/show', compact('test'));
+    }
+
+    public function edit(Request $request){
+        $test = Test::find($request->get('id'));$modules = Module::all();
+        $modules = Module::all();
+        $tags = Tag::all()->diff(Tag::whereIn('id', array_column($test->tags->toArray(), 'id'))->get());
+        $types = Type::all();
+        return view('deadline/edit', compact('test', 'modules', 'tags', 'types'));
     }
 }
