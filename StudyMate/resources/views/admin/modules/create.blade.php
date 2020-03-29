@@ -19,27 +19,27 @@
                 <div class="value-inputs">
                     <div class="form-group">
                         <label for="name">Naam</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
                         <label for="period">Periode</label>
-                        <input type="number" class="form-control" name="period" min="1" max="4" value="1">
+                        <input type="number" class="form-control" id="period" name="period" min="1" max="4" value="1">
                     </div>
                     <div class="form-group">
                         <label for="block">Blok</label>
-                        <input type="number" class="form-control" name="block" min="1" max="16" value="1">
+                        <input type="number" class="form-control" id="block" name="block" min="1" max="16" value="1">
                     </div>
                     <div class="form-group">
-                        <label for="block">Cijfer</label>
-                        <input type="text" class="form-control" name="block" min="1" max="16">
+                        <label for="grade">Cijfer</label>
+                        <input type="text" class="form-control" id="grade" name="grade" min="1" max="16">
                     </div>
                     <div class="form-group">
                         <label for="total_credits">Te behalen studiepunten</label>
-                        <input type="number" class="form-control" name="total_credits" min="1" value="1">
+                        <input type="number" class="form-control" id="total_credits" name="total_credits" min="1" value="1">
                     </div>
                     <div class="form-group">
                         <label for="obtained_credits">Behaalde studiepunten</label>
-                        <input type="number" class="form-control" name="obtained_credits" min="0" value="0">
+                        <input type="number" class="form-control" id="obtained_credits" name="obtained_credits" min="0" value="0">
                     </div>
                 </div>
                 <div class="teacher-input">
