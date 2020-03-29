@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener('load', () => {
     let teacherContainer = document.querySelector('.teacher-input');
     let tagContainer = document.querySelector('.tag-input');
     let container = teacherContainer;
@@ -57,7 +57,7 @@ window.onload = () => {
             }
         };
     }
-};
+});
 
 function addRadio(type, id) {
     let input = document.createElement('td');

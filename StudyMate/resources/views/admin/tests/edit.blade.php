@@ -43,7 +43,7 @@
                         <input type="text" class="form-control" id="grade" name="grade" value="{{ $test->grade }}">
                     </div>
                     <div class="form-group">
-                        <label for="grade">Datum</label>
+                        <label for="date">Datum</label>
                         <input type="datetime-local" class="form-control" id="date" name="date" value="{{ date('Y-m-d\TH:i', strtotime($test->date)) }}">
                     </div>
                     <div class="form-group">
@@ -57,8 +57,10 @@
                     <label for="tag">Tags</label>
                     <table class="table">
                         <thead>
-                        <th>Naam</th>
-                        <th>Actie</th>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Actie</th>
+                        </tr>
                         </thead>
                         <tbody>
                         @foreach($test->tags as $tag)

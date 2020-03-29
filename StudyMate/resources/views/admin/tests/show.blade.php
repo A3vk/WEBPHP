@@ -40,7 +40,9 @@
                 <label for="tag">Tags</label>
                 <table class="table">
                     <thead>
-                    <th>Naam</th>
+                    <tr>
+                        <th>Naam</th>
+                    </tr>
                     </thead>
                     <tbody>
                     @foreach($test->tags as $tag)

@@ -14,7 +14,8 @@ class Module extends Model
         'period',
         'block',
         'total_credits',
-        'obtained_credits'
+        'obtained_credits',
+        'grade'
     ];
 
     protected $encryptable = [
@@ -22,7 +23,8 @@ class Module extends Model
         'period',
         'block',
         'total_credits',
-        'obtained_credits'
+        'obtained_credits',
+        'grade'
     ];
 
     public function teachers()
