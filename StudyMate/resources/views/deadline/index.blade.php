@@ -39,31 +39,30 @@
             </tr>
             </thead>
             <tbody>
-                @foreach($tests as $test)
-                    <tr>
-                        <td>
-                            <form action="{{ action('DeadlineController@save') }}" method="POST" id = completeForum>
-                                @csrf
-                                <input type="checkbox" id="check" name="completed"  {{ $test->is_complete ? 'checked' : '' }}>
-                                <input type="hidden" name="id" value="{{ $test->id }}">
-                                <input type="submit">
-                            </form>
-                        </td>
-                        <td>{{ $test->module->name }}</td>
-                        <td>{{ $test->type->name }}</td>
-                        <td>{{ $test->name }}</td>
-                        @foreach($test->module->teachers as $teacher)
-                        @if ( $teacher->pivot->is_my_teacher === 1 )
-                            <td>{{ $teacher->fullName() }}</td>
-                        @endif
-                        @endforeach
-                        <td>{{ date('d-m-Y\ H:i', strtotime($test->date))}}</td>
-                        <td class="d-flex">
-                            <a class="btn btn-success" href="/deadline/show?id={{ $test->id }}"><i class="far fa-eye"></i></a>
-                            <a class="btn btn-warning ml-1" href="/deadline/edit?id={{ $test->id }}"><i class="fas fa-pen"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
+                    @foreach($tests as $test)
+                        <tr>
+                            <td>
+                                <form action="{{ action('DeadlineController@save') }}" method="POST" id = completeForum>
+                                    @csrf
+                                    <input type="checkbox" id="Check" name="completed"  {{ $test->is_complete ? 'checked' : '' }}>
+                                    <input type="hidden" name="id" value="{{ $test->id }}">
+                                </form>
+                            </td>
+                            <td>{{ $test->module->name }}</td>
+                            <td>{{ $test->type->name }}</td>
+                            <td>{{ $test->name }}</td>
+                            @foreach($test->module->teachers as $teacher)
+                            @if ( $teacher->pivot->is_my_teacher === 1 )
+                                <td>{{ $teacher->fullName() }}</td>
+                            @endif
+                            @endforeach
+                            <td>{{ date('d-m-Y\ H:i', strtotime($test->date))}}</td>
+                            <td class="d-flex">
+                                <a class="btn btn-success" dusk="show" href="/deadline/show?id={{ $test->id }}"><i class="far fa-eye"></i></a>
+                                <a class="btn btn-warning ml-1" dusk="edit" href="/deadline/edit?id={{ $test->id }}"><i class="fas fa-pen"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
             </tbody>
         </table>
     </div>
