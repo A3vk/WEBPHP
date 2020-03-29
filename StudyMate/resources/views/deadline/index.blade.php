@@ -16,22 +16,22 @@
             <thead class="bg-success">
             <tr>
                 <th scope="col">
-                    <a href="/deadline/index?sort=is_complete">Afgerond</a>
+                    <a class="btn btn-success" href="/deadline/index?sort=is_complete">Afgerond</a>
                 </th>
                 <th scope="col">
-                    <a href="/deadline/index?sort=module">Vak</a>
+                    <a class="btn btn-success" href="/deadline/index?sort=module">Vak</a>
                 </th>
                 <th scope="col">
-                    <a href="/deadline/index?sort=type">Type</a>
+                    <a class="btn btn-success" href="/deadline/index?sort=type">Type</a>
                 </th>
                 <th scope="col">
-                    <a href="/deadline/index?sort=name">Naam</a>
+                    <a class="btn btn-success" href="/deadline/index?sort=name">Naam</a>
                 </th>
                 <th scope="col">
-                    <a href="/deadline/index?sort=teacher">Docent</a>
+                    <a class="btn btn-success" href="/deadline/index?sort=teacher">Docent</a>
                 </th>
                 <th scope="col">
-                    <a href="/deadline/index?sort=date">Datum</a>
+                    <a class="btn btn-success" href="/deadline/index?sort=date">Datum</a>
                 </th>
                 <th scope="col">actions</th>
             </tr>
