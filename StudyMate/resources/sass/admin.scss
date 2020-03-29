@@ -12,6 +12,12 @@
     }
 }
 
+.deadline-table {
+    table tbody {
+        max-height: 750px;
+    }
+}
+
 .table-fixed {
     display: flex;
     flex-flow: column;
