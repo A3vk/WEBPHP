@@ -30,6 +30,7 @@ Route::middleware('role')->prefix('deadline')->group(function () {
     Route::post('/save', 'DeadlineController@save');
     Route::get('/show', 'DeadlineController@show');
     Route::get('/edit', 'DeadlineController@edit');
+    Route::post('/update', 'DeadlineController@update');
 });
 
 

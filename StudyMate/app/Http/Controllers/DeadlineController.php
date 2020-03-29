@@ -96,10 +96,20 @@ class DeadlineController extends Controller
     }
 
     public function edit(Request $request){
-        $test = Test::find($request->get('id'));$modules = Module::all();
+        $test = Test::find($request->get('id'));
         $modules = Module::all();
         $tags = Tag::all()->diff(Tag::whereIn('id', array_column($test->tags->toArray(), 'id'))->get());
         $types = Type::all();
         return view('deadline/edit', compact('test', 'modules', 'tags', 'types'));
+    }
+
+    public function update(Request $request){
+        $test = Test::find($request->get('id'));
+        $test->tags()->sync($request->get('tags'));
+        $test->date = $request->get('date');
+
+        $test->save();
+
+        return redirect('deadline/index');
     }
 }

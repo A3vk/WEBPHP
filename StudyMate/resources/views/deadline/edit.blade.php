@@ -13,9 +13,9 @@
             <br />
         @endif
         <h1>Toets bewerken</h1>
-        <form action="{{ route('tests.update', $test->id) }}" method="POST">
+        <form action="{{ action('DeadlineController@update') }}" method="POST">
             @csrf
-            @method('PATCH')
+            <input type="hidden" name="id" value="{{ $test->id }}">
             <div class="side">
                 <div class="value-inputs">
                     </div>
