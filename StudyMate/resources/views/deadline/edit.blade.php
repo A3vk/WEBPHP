@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Opslaan</button>
+            <button type="submit" dusk="save" class="btn btn-primary">Opslaan</button>
         </form>
     </div>
 @endsection
