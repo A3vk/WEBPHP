@@ -36,16 +36,16 @@
                         <div class="tab-pane fade {{ $block == 1 ? 'show active' : '' }}" id="list-block{{ $block }}" role="tabpanel" aria-labelledby="list-block{{ $block }}-list">
                             <h1>Blok {{ $block }}</h1>
                             <div class="table-responsive">
-                                <table class="table table-hover table-fixed">
+                                <table class="table table-hover table-fixed dashboard-table">
                                     <thead class="bg-success">
                                     <tr>
                                         <th scope="col">vak</th>
                                         <th scope="col">cijfer</th>
-                                        <th scope="col">te behalen studiepunten</th>
                                         <th scope="col">behaalde studiepunten</th>
+                                        <th scope="col">te behalen studiepunten</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="dashboard-height">
                                         @foreach($modules[$block] as $module)
                                             @if(!is_numeric($module))
                                                 <tr>

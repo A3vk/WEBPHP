@@ -47,10 +47,10 @@
                         @guest
                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         @else
-                        <a class="nav-link" href="{{ route('logout') }}" id="logout">Logout</a>
-                                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                       @csrf
-                                   </form>
+                            <a class="nav-link" href="{{ route('logout') }}" id="logout">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
                         @endguest
                     </li>
                 </ul>
