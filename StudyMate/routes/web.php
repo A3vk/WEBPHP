@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 
 Route::middleware('role')->prefix('admin')->group(function () {
     Route::resource('teachers', 'TeacherController');
     Route::resource('modules', 'ModuleController');
     Route::resource('tests', 'TestController');
+});
+
+Route::middleware('role')->prefix('deadline')->group(function () {
+    Route::get('/index', 'DeadlineController@index');
+    Route::post('/save', 'DeadlineController@save');
+    Route::get('/show', 'DeadlineController@show');
+    Route::get('/edit', 'DeadlineController@edit');
+    Route::post('/update', 'DeadlineController@update');
 });
 
 

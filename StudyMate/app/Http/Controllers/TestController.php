@@ -44,22 +44,26 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'completed'=>'required'
+            'name'=>'required|max:50',
         ]);
 
         $test = new Test([
-            'type' => $request->get('type'),
-            'module' => $request->get('module'),
+            'type_id' => $request->get('type'),
+            'module_id' => $request->get('module'),
             'name' => $request->get('name'),
-            'grade' => $request->get('grade'),
-            'date' => $request->get('date'),
-            'is_complete' => ($request->get('completed') == 'on' ? true : false),
+            'grade' => null,
+            'date' => null,
+            'is_complete' => false,
             'created_at' => now()
         ]);
         $test->save();
 
-        $test->tags()->sync($request->get('tags'));
+        if($request->file('file')) {
+            $ext = $request->file('file')->extension();
+            $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
+            $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id . '.' . $ext;
+        }
+        $test->save();
 
         return redirect('/admin/tests')->with('success', 'Toets opgeslagen!');
     }
@@ -99,19 +103,22 @@ class TestController extends Controller
     public function update(Request $request, Test $test)
     {
         $request->validate([
-            'name'=>'required',
-            'completed'=>'required'
+            'name'=>'required|max:50',
+            'file'=>'nullable|file|mimes:zip,rar,7zip'
         ]);
 
-        $test->type = $request->get('type');
-        $test->module = $request->get('module');
+        $test->type_id = $request->get('type');
+        $test->module_id = $request->get('module');
         $test->name = $request->get('name');
-        $test->grade = $request->get('grade');
-        $test->date = $request->get('date');
-        $test->is_complete = ($request->get('completed') == 'on' ? true : false);
         $test->updated_at = now();
 
-        $test->tags()->sync($request->get('tags'));
+        if($request->file('file')) {
+            $ext = $request->file('file')->extension();
+            $request->file('file')->storeAs('public/files/' . $test->module->name, $test->name . $test->id . '.' . $ext);
+            $test->file = 'files/' . $test->module->name . '/' . $test->name . $test->id . '.' . $ext;
+        }
+        $test->save();
+
         return redirect('/admin/tests')->with('success', 'Toets geupdate!');
     }
 

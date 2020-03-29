@@ -18,7 +18,7 @@ class CreateTestsTable extends Migration
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('module_id');
             $table->string('name');
-            $table->string('file')->nullable();
+            $table->string('file', 500)->nullable();
             $table->string('grade')->nullable();
             $table->string('date');
             $table->boolean('is_complete');

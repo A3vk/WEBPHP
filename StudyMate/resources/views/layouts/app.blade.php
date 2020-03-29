@@ -32,8 +32,8 @@
                         <a class="nav-link {{ (request()->is('/*')) ? 'active' : '' }}" href="/">Dashboard</a>
                     </li>
                     @if(Gate::allows('deadline', Auth::user()))
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Deadline Manager</a>
+                        <li class="nav-item {{ (request()->is('deadline*')) ? 'active' : '' }}">
+                            <a class="nav-link" href="/deadline/index">Deadline Manager</a>
                         </li>
                     @endif
                     @if(Gate::allows('admin', Auth::user()))
@@ -47,10 +47,10 @@
                         @guest
                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         @else
-                        <a class="nav-link" href="{{ route('logout') }}" id="logout">Logout</a>
-                                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                       @csrf
-                                   </form>
+                            <a class="nav-link" href="{{ route('logout') }}" id="logout">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
                         @endguest
                     </li>
                 </ul>

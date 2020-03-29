@@ -19,7 +19,8 @@ class CreateModulesTable extends Migration
             $table->string('period');
             $table->string('block');
             $table->string('total_credits');
-            $table->string('obtained_credits');   
+            $table->string('obtained_credits');
+            $table->string('grade')->nullable();
             $table->timestamps();
         });
     }

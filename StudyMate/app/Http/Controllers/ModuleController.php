@@ -39,11 +39,13 @@ class ModuleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'period'=>'required',
-            'block'=>'required',
-            'total_credits'=>'required',
-            'obtained_credits'=>'required'
+            'name'=>'required|max:50',
+            'period'=>'required|integer|between:1,4',
+            'block'=>'required|integer|between:1,16',
+            'total_credits'=>'required|integer|min:1',
+            'obtained_credits'=>'required|integer|lte:total_credits|min:0',
+            'grade'=>'nullable|numeric|between:1,10',
+            'teachers'=>'required|array',
         ]);
 
         $module = new Module([
@@ -52,6 +54,7 @@ class ModuleController extends Controller
             'block' => $request->get('block'),
             'total_credits' => $request->get('total_credits'),
             'obtained_credits' => $request->get('obtained_credits'),
+            'grade' => $request->get('grade'),
             'created_at' => now()
         ]);
         $module->save();
@@ -99,11 +102,13 @@ class ModuleController extends Controller
     public function update(Request $request, Module $module)
     {
         $request->validate([
-            'name'=>'required',
-            'period'=>'required',
-            'block'=>'required',
-            'total_credits'=>'required',
-            'obtained_credits'=>'required'
+            'name'=>'required|max:50',
+            'period'=>'required|integer|between:1,4',
+            'block'=>'required|integer|between:1,16',
+            'total_credits'=>'required|integer|min:1',
+            'obtained_credits'=>'required|integer|lte:total_credits|min:0',
+            'grade'=>'nullable|numeric|between:1,10',
+            'teachers'=>'required|array',
         ]);
 
         $module->name = $request->get('name');
@@ -111,6 +116,7 @@ class ModuleController extends Controller
         $module->block = $request->get('block');
         $module->total_credits = $request->get('total_credits');
         $module->obtained_credits = $request->get('obtained_credits');
+        $module->grade = $request->get('grade');
         $module->updated_at = now();
         $module->save();
 

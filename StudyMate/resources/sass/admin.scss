@@ -2,6 +2,22 @@
     right: 0;
 }
 
+.add {
+     width: 300px;
+ }
+
+.teacher-input {
+    table tbody {
+        max-height: 500px;
+    }
+}
+
+.deadline-table {
+    table tbody {
+        max-height: 750px;
+    }
+}
+
 .table-fixed {
     display: flex;
     flex-flow: column;
@@ -33,8 +49,4 @@
         display: table;
         table-layout: fixed;
     }
-}
-
-.side {
-    display: flex;
 }

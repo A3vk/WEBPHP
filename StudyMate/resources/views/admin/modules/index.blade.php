@@ -20,6 +20,7 @@
                 <th scope="col">naam</th>
                 <th scope="col">periode</th>
                 <th scope="col">blok</th>
+                <th scope="col">cijfer</th>
                 <th scope="col">behaalde studiepunten</th>
                 <th scope="col">te behalen studiepunten</th>
                 <th scope="col">actions</th>
@@ -32,6 +33,11 @@
                     <td>{{ $module->name }}</td>
                     <td>{{ $module->period }}</td>
                     <td>{{ $module->block }}</td>
+                    @isset($module->grade)
+                        <td>{{ $module->grade }}</td>
+                    @else
+                        <td>N/A</td>
+                    @endisset
                     <td>{{ $module->obtained_credits }}</td>
                     <td>{{ $module->total_credits }}</td>
                     <td class="d-flex">
