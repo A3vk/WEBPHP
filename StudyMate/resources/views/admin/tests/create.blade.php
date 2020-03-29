@@ -34,15 +34,15 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Naam</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
                 </div>
                 <div class="form-group">
                     <label for="grade">Cijfer</label>
-                    <input type="number" class="form-control" id="grade" name="grade">
+                    <input type="number" class="form-control @error('grade') is-invalid @enderror" id="grade" name="grade">
                 </div>
                 <div class="form-group">
                     <label for="file">Bestand</label>
-                    <div class="custom-file overflow-hidden">
+                    <div class="custom-file overflow-hidden @error('file') is-invalid @enderror">
                         <input type="file" class="custom-file-input" id="file" name="file" accept=".zip,.rar,.7zip">
                         <label class="custom-file-label" for="file" aria-describedby="file-helper">Choose file...</label>
                     </div>

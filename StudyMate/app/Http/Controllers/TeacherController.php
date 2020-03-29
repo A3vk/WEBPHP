@@ -39,8 +39,8 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required'
+            'first_name'=>'required|max:25',
+            'last_name'=>'required|max:50'
         ]);
 
         $teacher = new Teacher([

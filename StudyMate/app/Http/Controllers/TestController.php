@@ -44,14 +44,14 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|max:50',
         ]);
 
         $test = new Test([
             'type_id' => $request->get('type'),
             'module_id' => $request->get('module'),
             'name' => $request->get('name'),
-            'grade' => $request->get('grade'),
+            'grade' => null,
             'date' => null,
             'is_complete' => false,
             'created_at' => now()
@@ -101,13 +101,13 @@ class TestController extends Controller
     public function update(Request $request, Test $test)
     {
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|max:50',
+            'file'=>'nullable|file|mimes:zip,rar,7zip'
         ]);
 
         $test->type_id = $request->get('type');
         $test->module_id = $request->get('module');
         $test->name = $request->get('name');
-        $test->grade = $request->get('grade');
         $test->updated_at = now();
 
         $ext = $request->file('file')->extension();

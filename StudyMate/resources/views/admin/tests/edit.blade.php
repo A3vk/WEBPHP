@@ -35,16 +35,16 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Naam</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $test->name }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $test->name }}">
                 </div>
                 <div class="form-group">
                     <label for="grade">Cijfer</label>
-                    <input type="text" class="form-control" id="grade" name="grade" value="{{ $test->grade }}">
+                    <input type="text" class="form-control @error('grade') is-invalid @enderror" id="grade" name="grade" value="{{ $test->grade }}">
                 </div>
                 <div class="form-group">
                     <label for="file">Bestand</label>
                     <div class="custom-file overflow-hidden">
-                        <input type="file" class="custom-file-input" id="file" name="file" accept=".zip,.rar,.7zip">
+                        <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="file" name="file" accept=".zip,.rar,.7zip">
                         <label class="custom-file-label" for="file" aria-describedby="file-helper">Choose file...</label>
                     </div>
                     <small id="file-helper" class="text-muted">
