@@ -3,12 +3,18 @@
 }
 
 .add {
-    width: 300px;
-}
+     width: 300px;
+ }
 
 .teacher-input {
     table tbody {
         max-height: 500px;
+    }
+}
+
+.deadline-table {
+    table tbody {
+        max-height: 750px;
     }
 }
 
