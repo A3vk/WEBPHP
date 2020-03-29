@@ -52,6 +52,7 @@ class ModuleController extends Controller
             'block' => $request->get('block'),
             'total_credits' => $request->get('total_credits'),
             'obtained_credits' => $request->get('obtained_credits'),
+            'grade' => $request->get('grade'),
             'created_at' => now()
         ]);
         $module->save();
@@ -111,6 +112,7 @@ class ModuleController extends Controller
         $module->block = $request->get('block');
         $module->total_credits = $request->get('total_credits');
         $module->obtained_credits = $request->get('obtained_credits');
+        $module->grade = $request->get('grade');
         $module->updated_at = now();
         $module->save();
 
