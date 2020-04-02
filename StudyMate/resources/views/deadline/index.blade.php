@@ -44,7 +44,7 @@
                             <td>
                                 <form action="{{ action('DeadlineController@save') }}" method="POST" id = completeForum>
                                     @csrf
-                                    <input type="checkbox" id="Check" name="completed"  {{ $test->is_complete ? 'checked' : '' }}>
+                                    <input type="checkbox" id="check" name="completed"  {{ $test->is_complete ? 'checked' : '' }}>
                                     <input type="hidden" name="id" value="{{ $test->id }}">
                                 </form>
                             </td>

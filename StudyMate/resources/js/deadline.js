@@ -1,4 +1,3 @@
-
 let checkBoxes = document.querySelectorAll('#check');
 let forms =  document.querySelectorAll('#completeForum');
 
