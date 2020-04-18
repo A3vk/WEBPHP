@@ -15,7 +15,7 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 300);
             $table->string('period');
             $table->string('block');
             $table->string('total_credits');

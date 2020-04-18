@@ -17,10 +17,10 @@ class CreateTestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('module_id');
-            $table->string('name');
+            $table->string('name', 300);
             $table->string('file', 500)->nullable();
             $table->string('grade')->nullable();
-            $table->string('date');
+            $table->string('date', 300);
             $table->boolean('is_complete');
             $table->timestamps();
 
